@@ -19,9 +19,32 @@ def on_release(event):
 def on_motion(event):
     if is_drawing and event.xdata is not None and event.ydata is not None:
         x, y = int(event.xdata), int(event.ydata)
+
+        #     update_canvas()
         if 0 <= x < 28 and 0 <= y < 28:
-            image[y, x] = 255  # Set pixel to white
+            if image[y, x] == 0:
+
+                if image[y, x+1] == 0:
+                    image[y, x+1] = 200
+                
+                if image[y+1, x] == 0:
+                    image[y+1, x] = 200
+
+                if image[y+1, x+1] == 0:
+                    image[y+1, x+1] = 150
+
+                if image[y, x-1] == 0:
+                    image[y, x-1] = 200
+
+                if image[y-1, x] == 0:
+                    image[y-1, x] = 200
+                
+                if image[y-1, x-1] == 0:
+                    image[y-1, x-1] = 150
+            image[y, x] = 255 
+
             update_canvas()
+    
 
 def update_canvas():
     plt.clf()
