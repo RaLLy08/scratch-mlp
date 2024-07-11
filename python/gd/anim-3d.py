@@ -15,7 +15,6 @@ Z_MAX = 200
 
 SAMPLES = 100
 
-# Ensure VisPy uses the PyQt5 backend
 os.environ['VISPY_APP_BACKEND'] = 'pyqt5'
 
 def rastrigin_3D(X, Y, A=10):
@@ -118,8 +117,6 @@ def gradient_descent(lp=0.09):
     vx = df_x(min_fn, x, y)
     vy = df_y(min_fn, x, y)
 
-    # print(vx, vy)
-
     x = x - vx * lp
     y = y - vy * lp
 
@@ -127,10 +124,8 @@ def gradient_descent(lp=0.09):
 def frame(_):
     global t, x, y, noise_int_x, noise_int_y, noise_int_z
 
-
     gradient_descent(0.1)
     # update_surface()
-
     # noise_min = -2
     # noise_max = 2
     # noise_int_x = np.random.uniform(noise_min, noise_max)
@@ -140,7 +135,6 @@ def frame(_):
     draw_point(x, y, min_fn(x, y))
 
     t += 1
-
 
 
 timer = app.Timer()
