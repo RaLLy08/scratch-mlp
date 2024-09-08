@@ -34,7 +34,7 @@ class DrawingApp:
         self.ax2 = figure.add_axes([0.14, 0.01, 0.2, 0.98])
         self.ax3 = figure.add_axes([0.18, 0.01, 0.2, 0.98])
 
-        self.ax4 = figure.add_axes([0.3, 0.25, 0.2, 0.5])
+        self.ax4 = figure.add_axes([0.33, 0.25, 0.1, 0.5])
         self.ax5 = figure.add_axes([0.4, 0.25, 0.2, 0.5])
         self.ax6 = figure.add_axes([0.4, 0.25, 0.3, 0.5])
 
@@ -51,44 +51,49 @@ class DrawingApp:
         return figure
 
     def init_nn_axes(self):
-        self.ax.set_ylabel('First layer weights (128x784)', fontsize=14)
+        mlp_mnist_nne = NeuralNetworkExtractor(mlp_mnist)
+        weigths = mlp_mnist_nne.get_weights()
+        biases = mlp_mnist_nne.get_biases()
+        neurons = mlp_mnist_nne.get_neurons()
+
+        self.ax.set_ylabel(f'First layer weights {weigths[0].T.shape}', fontsize=14)
         self.ax.yaxis.tick_right()
         
-        self.ax2.set_ylabel('First layer biases (128)', fontsize=14)
+        self.ax2.set_ylabel(f'First layer biases ({neurons[1]})', fontsize=14)
         self.ax2.set_frame_on(False)
         self.ax2.set_yticks([])
         self.ax2.set_xticks([])
 
-        self.ax3.set_ylabel('First outputs activated by ReLU (128)', fontsize=14)
+        self.ax3.set_ylabel(f'First outputs activated by ReLU ({neurons[1]})', fontsize=14)
         self.ax3.yaxis.tick_right()
         self.ax3.set_xticks([])
 
 
-        self.ax4.set_ylabel('Second layer weights (32x128)', fontsize=14)
+        self.ax4.set_ylabel(f'Second layer weights {weigths[1].T.shape}', fontsize=14)
         self.ax4.yaxis.tick_right()
 
-        self.ax5.set_ylabel('Second layer biases (32)', fontsize=14)
+        self.ax5.set_ylabel(f'Second layer biases ({neurons[2]})', fontsize=14)
         self.ax5.yaxis.tick_right()
         self.ax5.set_frame_on(False)
         self.ax5.set_yticks([])
         self.ax5.set_xticks([])
 
 
-        self.ax6.set_ylabel('Second outputs activated by ReLU (32)', fontsize=14)
+        self.ax6.set_ylabel(f'Second outputs activated by ReLU ({neurons[2]})', fontsize=14)
         self.ax6.yaxis.tick_right()
         self.ax6.set_xticks([])
 
-        self.ax7.set_ylabel('Output layer weights (10x32)', fontsize=14)
+        self.ax7.set_ylabel(f'Output layer weights {weigths[2].T.shape}', fontsize=14)
         self.ax7.yaxis.tick_right()
 
-        self.ax8.set_ylabel('Output layer biases (10)', fontsize=14)
+        self.ax8.set_ylabel(f'Output layer biases ({neurons[3]})', fontsize=14)
         self.ax8.yaxis.tick_right()
         self.ax8.set_xticks([])
         self.ax8.set_frame_on(False)
         self.ax8.set_yticks([])
         
 
-        self.ax9.set_ylabel('Output layer outputs (10)', fontsize=14)
+        self.ax9.set_ylabel(f'Output layer outputs ({neurons[3]})', fontsize=14)
         self.ax9.yaxis.tick_right()
         self.ax9.set_xticks([])
 
@@ -128,7 +133,8 @@ class DrawingApp:
         self.draw_static(mlp_mnist)
 
         self.clear_plots()
-        self.update_probabilities()
+        self.update_thread = threading.Thread(target=self.update_probabilities, daemon=True)
+        self.update_thread.start()
 
 
     def __init__(self, root):
@@ -282,15 +288,16 @@ class DrawingApp:
         max_index = np.argmax(predictions_rounded)
 
         mlp_outputs = mlp_mnist_nne.get_layers_outputs()
+        neurons = mlp_mnist_nne.get_neurons()
 
         # Update existing plots instead of clearing and redrawing
         self.ax3.axis('on')
         self.ax3.imshow(mlp_outputs[0].T, cmap='gray')
-        self.ax3.set_ylabel('First outputs activated by ReLU (128)', fontsize=14)
+        self.ax3.set_ylabel(f'First outputs activated by ReLU ({neurons[1]})', fontsize=14)
 
         self.ax6.axis('on')
         self.ax6.imshow(mlp_outputs[1].T, cmap='gray')
-        self.ax6.set_ylabel('Second outputs activated by ReLU (32)', fontsize=14)
+        self.ax6.set_ylabel(f'Second outputs activated by ReLU ({neurons[2]})', fontsize=14)
 
         self.ax9.axis('on')
         self.ax9.imshow(mlp_outputs[2].T, cmap='gray')
