@@ -1,6 +1,7 @@
 # This repository contains various files related to toy neural network for educational purposes, including scripts and notebooks for training, testing, and interactive use.
 
-Read more in post: https://www.linkedin.com/feed/update/urn:li:activity:7222336260659433473/
+Read more in posts: [1](https://www.linkedin.com/feed/update/urn:li:activity:7222336260659433473/), [2](https://www.linkedin.com/feed/update/urn:li:activity:7239729033104494592/)
+
 
 
 # Project Files Overview
