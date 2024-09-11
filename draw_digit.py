@@ -301,7 +301,7 @@ class DrawingApp:
 
         self.ax9.axis('on')
         self.ax9.imshow(mlp_outputs[2].T, cmap='gray')
-        self.ax9.set_ylabel('Output layer outputs (10)', fontsize=14)
+        self.ax9.set_ylabel('Output layer outputs activated by softmax (10)', fontsize=14)
 
         self.img_plot_ax.imshow(image, cmap='gray')
 
