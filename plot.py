@@ -81,7 +81,7 @@ def plot_nn_history(nn, skip_epochs=0):
     plt.show()
 
 
-
+# adapted from: https://gist.github.com/craffel/2d727968c3aaebd10359
 def draw_nn(
         ax,
         left, 
