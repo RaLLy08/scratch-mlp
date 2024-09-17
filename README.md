@@ -25,5 +25,11 @@ Read more in posts: [1](https://www.linkedin.com/feed/update/urn:li:activity:722
 - **mlp_tf.py**  
   Tenserflow version
 
+python version 3.9.x
+install required packages:
+pip install scikit-learn matplotlib numpy opencv-python
+
+optional for running tensorflow version:
+pip install tensorflow
 
 run **python draw_digit** to draw digits
