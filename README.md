@@ -29,7 +29,7 @@ python version 3.9.x
 install required packages:
 pip install scikit-learn matplotlib numpy opencv-python
 
-optional for running tensorflow version:
+for running tensorflow version or training models (optional):
 pip install tensorflow
 
 run **python draw_digit** to draw digits
