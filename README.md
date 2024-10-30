@@ -2,7 +2,7 @@
 
 Read more in posts: [1](https://www.linkedin.com/feed/update/urn:li:activity:7222336260659433473/), [2](https://www.linkedin.com/feed/update/urn:li:activity:7239729033104494592/)
 
-Video demonstration of mlp training process on the simple example: https://www.youtube.com/watch?v=sYe_gty4R5w&ab_channel=Azad
+Video demonstration of mlp training process on the simple example: https://www.youtube.com/watch?v=sYe_gty4R5w
 
 
 
