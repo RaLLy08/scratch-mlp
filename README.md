@@ -37,8 +37,8 @@ pip install tensorflow
 run **python draw_digit** to draw digits
 
 
-![](https://github.com/RaLLy08/scratch-mlp/blob/main/predicting.PNG)
-![](https://github.com/RaLLy08/scratch-mlp/blob/main/training.png)
+![](https://github.com/RaLLy08/scratch-mlp/blob/main/img/predicting.PNG)
+![](https://github.com/RaLLy08/scratch-mlp/blob/main/img/training.png)
 
 
 
