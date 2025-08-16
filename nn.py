@@ -50,7 +50,7 @@ class LayerDense:
         self.weights = np.random.randn(self.inputs_len, self.neurons_len) * np.sqrt(2. / self.inputs_len)
 
     def init_biases(self):
-        self.biases = np.zeros(self.neurons_len)
+        self.biases = np.zeros((1, self.neurons_len))
 
     def __init__(self, inputs_len, neurons_len, activation=relu):
         self.inputs_len = inputs_len

@@ -90,7 +90,8 @@ def draw_nn(
         top, 
         layer_sizes, 
         weights, 
-        biases
+        biases,
+        ignore_sizes=False
     ):
     v_spacing = (top - bottom)/float(max(layer_sizes))
     h_spacing = (right - left)/float(len(layer_sizes) - 1)
@@ -117,7 +118,7 @@ def draw_nn(
             if (n != 0):
                 max_bias = np.max(np.abs(biases[n - 1]))
 
-                inner_circle_r = inner_circle_max_r * (np.abs(biases[n - 1][0][m]) / max_bias)
+                inner_circle_r = inner_circle_max_r * (np.abs(biases[n - 1][0][m]) / max_bias) if max_bias != 0 else 0
 
                 inner_circle = plt.Circle(
                     (x, y), 
@@ -143,6 +144,10 @@ def draw_nn(
                 max_lw = 3
                 min_lw = 0.1
                 lw = min_lw + (max_lw - min_lw) * np.abs(weight)
+
+                if (ignore_sizes):
+                    lw = 1
+
                 color = 'black'
 
                 line = plt.Line2D(x1x2, y1y2, c=color, lw=lw)
