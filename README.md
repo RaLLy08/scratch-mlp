@@ -35,3 +35,11 @@ for running tensorflow version or training models (optional):
 pip install tensorflow
 
 run **python draw_digit** to draw digits
+
+
+![](https://github.com/RaLLy08/scratch-mlp/blob/main/predicting.PNG)
+![](https://github.com/RaLLy08/scratch-mlp/blob/main/training.png)
+
+
+
+
